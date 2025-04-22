@@ -1,0 +1,149 @@
+﻿@model My_App.Models.Customer
+
+@{
+    ViewData["Title"] = "Create";
+    // <h5 class="text-muted">Visitor Count: @ViewBag.VisitorCount</h5>
+
+}
+
+<!-- Full-Width Layout with No Margin -->
+<style>
+
+    body {
+        background-color: cornflowerblue; /* Light grey background */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid, .row, .col-md-2, .col-md-10 {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .form-label, .form-control, .card {
+        margin-bottom: 01rem;
+    }
+</style>
+
+@* <!-- Horizontal Top Menu -->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: darkblue;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">My App</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar" aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Create">Create Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="About">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav> *@
+
+
+
+<div class="container-fluid">
+    <div class="row gx-5">
+        <!-- Vertical Sidebar Menu -->
+        <h7 class="mb-1"></h7>
+    @*     <div class="col-md-2" style="background-color: snow; color: white; min-height: 100vh;">
+            <div class="list-group rounded-1">
+                <a asp-action="Index" class="list-group-item list-group-item-action active">Dashboard</a>
+                <a asp-action="Create" class="list-group-item list-group-item-action">New Customer</a>
+                <a asp-action="Reports" class="list-group-item list-group-item-action">Reports</a>
+                <a asp-action="Settings" class="list-group-item list-group-item-action">Settings</a>
+            </div>
+        </div> *@
+
+        <!-- Main Content -->
+        <div class="col-md-10 px-4 py-3">
+            <h7 class="mb-1"></h7>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <div class="row">
+                    <!-- Left Column: Customer Info -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-header py-2 px-3 bg-primary text-white small">
+                                <strong>Customer Info</strong>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="mb-2">
+                                    <label asp-for="CustomerName" class="form-label small mb-1"></label>
+                                    <input asp-for="CustomerName" class="form-control form-control-sm" />
+                                    <span asp-validation-for="CustomerName" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="ContactName" class="form-label small mb-1"></label>
+                                    <input asp-for="ContactName" class="form-control form-control-sm" />
+                                    <span asp-validation-for="ContactName" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="Contact_No" class="form-label small mb-1"></label>
+                                    <input asp-for="Contact_No" class="form-control form-control-sm" />
+                                    <span asp-validation-for="Contact_No" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Location Info -->
+                    <div class="col-md-6">
+                        <div class="card shadow-sm mb-3">
+                            <div class="card-header py-2 px-3 bg-secondary text-white small">
+                                <strong>Location Info</strong>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="mb-2">
+                                    <label asp-for="City" class="form-label small mb-1"></label>
+                                    <input asp-for="City" class="form-control form-control-sm" />
+                                    <span asp-validation-for="City" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="Address" class="form-label small mb-1"></label>
+                                    <input asp-for="Address" class="form-control form-control-sm" />
+                                    <span asp-validation-for="Address" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="PostalCode" class="form-label small mb-1"></label>
+                                    <input asp-for="PostalCode" class="form-control form-control-sm" />
+                                    <span asp-validation-for="PostalCode" class="text-danger small"></span>
+                                </div>
+                                <div class="mb-2">
+                                    <label asp-for="Country" class="form-label small mb-1"></label>
+                                    <input asp-for="Country" class="form-control form-control-sm" />
+                                    <span asp-validation-for="Country" class="text-danger small"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons Row -->
+                <div class="row mt-3">
+                    <div class="col-12 text-end">
+                        <input type="submit" value="Create" class="btn btn-success me-2" />
+                        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - My_App</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/My_App.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background-color: #343a40;
+        }
+
+            .sidebar .nav-link {
+                color: #ccc;
+                padding: 12px 16px;
+            }
+
+                .sidebar .nav-link.active,
+                .sidebar .nav-link:hover {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .footer {
+            background-color: #f1f1f1;
+            padding: 15px 0;
+        }
+
+            .footer a {
+                color: #007bff;
+            }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-danger shadow-sm">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="@Url.Action("Index", "Home")">My_App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" href="@Url.Action("Index", "Home")">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Page("/Page/Index")">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Privacy", "Home")">Privacy</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Layout Content: Sidebar + Main -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-2 sidebar d-flex flex-column p-0">
+                <div class="text-white text-center py-3 border-bottom fs-6">Navigation</div>
+            @*     <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Dashboard" ? "active" : "")" href="#">Dashboard</a>
+      *@           <a class="nav-link" href="@Url.Action("Create", "Customers")">New Customer</a>
+                <a class="nav-link" href="@Url.Action("Index", "Customers")">View</a>
+                <a class="nav-link" href="#">Reports</a>
+                <a class="nav-link" href="#">Settings</a>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-10 main-content">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer text-center border-top mt-4">
+        <div class="container">
+            &copy; 2025 - My_App - <a href="@Url.Action("Privacy", "Home")">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
